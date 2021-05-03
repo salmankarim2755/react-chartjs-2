@@ -108,11 +108,11 @@ const ChartComponent = forwardRef<Chart | undefined, Props>((props, ref) => {
 
     // copy values
     assign(chart.config.data, newChartData);
-    chart.config.data.datasets = newDataSets.map((newDataSet: any) => {
+    currentDataSets.forEach((currentDataSet: any) => {
       // given the new set, find it's current match
-      const currentDataSet = find(
-        currentDataSets,
-        d => d.label === newDataSet.label && d.type === newDataSet.type
+      const newDataSet = find(
+        newDataSets,
+        d => d.label === currentDataSet.label && d.type === currentDataSet.type
       );
 
       // There is no original to update, so simply add new one

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
 const data = {
@@ -26,21 +26,31 @@ const options = {
   },
 };
 
-const LineChart = () => (
-  <>
-    <div className='header'>
-      <h1 className='title'>Line Chart</h1>
-      <div className='links'>
-        <a
-          className='btn btn-gh'
-          href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
-        >
-          Github Source
-        </a>
+const LineChart = () => {
+  const [state, setState] = useState(0);
+  return (
+    <>
+      <div className='header'>
+        <h1 className='title'>Line Chart</h1>
+        <div className='links'>
+          <a
+            className='btn btn-gh'
+            href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
+          >
+            Github Source
+          </a>
+        </div>
       </div>
-    </div>
-    <Line data={data} options={options} />
-  </>
-);
+      <button
+        onClick={() => {
+          setState(state + 1);
+        }}
+      >
+        State - {state}
+      </button>
+      <Line data={data} options={options} />
+    </>
+  );
+};
 
 export default LineChart;
